@@ -1,0 +1,52 @@
+    {% extends "elements/base.html" %}
+
+    {% block content %}
+    {% for post in object_list %}
+    {% if request.GET.author and forloop.first%}
+    <header class="page-header">
+        <h1 class="page-title">
+            Author: <span class="vcard">{{ post.user.get_full_name }}</span>
+        </h1>
+    </header>
+    {% endif %}
+    <article id="post-{{ post.id }}" class="post-{{ post.id }} post type-post status-publish format-standard hentry category-sem-categoria">
+        <header class="post-header">
+            <span class="post-meta">
+            <span class="posted-on"><a href="{{ post.get_absolute_url }}" rel="bookmark"><time class="entry-date published" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:'d \d\e F \d\e o' }}</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="?author={{ post.user_id }}">{{ post.user.get_full_name }}</a></span></span></span>
+            <h1 class="post-title"><a href="{{ post.get_absolute_url }}" rel="bookmark">{{ post.title }}</a></h1>
+
+        </header>
+        <section class="post-content">
+            {{ post.content|safe }}
+        </section>
+    </article><!-- #post-## -->
+    {% endfor %}
+     {% if is_paginated %}
+        <nav class="pagination navigation paging-navigation" role="navigation">
+            <div class="nav-links">
+                {% if page_obj.has_next %}
+                <div class="older-posts"><a href="?page={{ page_obj.next_page_number }}" >Older Posts <span class="meta-nav">&rarr;</span></a></div>
+                {% endif %}
+                <div class="page-number">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</div>
+                {% if page_obj.has_previous %}
+                <div class="newer-posts"><a href="?page={{ page_obj.next_page_number }}"><span class="meta-nav">←</span> Newer Posts</a></div>
+                {% endif %}
+            </div><!-- .nav-links -->
+        </nav><!-- .navigation -->
+    {% endif %}
+
+
+
+        <div id="secondary" class="widget-area" role="complementary">
+                    <div class="clear">&nbsp;</div>
+        </div><!-- #secondary -->
+
+        <footer id="colophon" class="site-footer" role="contentinfo">
+            <a class="subscribe icon-feed" href="index.html?feed=rss2"><span class="tooltip">Subscribe!</span></a>
+            <div class="site-info inner">
+                <section class="copyright">
+                    <a href="https://github.com/lacymorrow/casper-wp" rel="home">Casper WP</a> by Lacy Morrow
+                </section>
+            </div><!-- .site-info -->
+        </footer><!-- #colophon -->
+    {% endblock %}

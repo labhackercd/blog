@@ -1,0 +1,52 @@
+{% extends 'elements/base.html' %}
+{% block content %}
+    <article id="post-1182" class="post-1182 post type-post status-publish format-standard hentry category-sem-categoria">
+        <header class="post-header">
+            <span class="post-meta">
+            <span class="posted-on"><a href="index.html?p=1182" rel="bookmark"><time class="entry-date published" datetime="{{ object.published_at|date:'c' }}">{{ object.published_at|date:'d \d\e F \d\e o' }}</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="?author={{ post.user_id }}">{{ post.user.get_full_name }}</a></span></span></span>
+            <h1 class="post-title"><a href="index.html?p=1182" rel="bookmark">{{ object.title }}</a></h1>
+        </header>
+        <section class="post-content">
+            {{ object.content|safe }}
+        </section>
+
+        <footer class="post-footer">
+            <section class="author">
+                <img alt='' src='http://0.gravatar.com/avatar/029f663629fc56eadc1e1241f727aadf?s=100&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/029f663629fc56eadc1e1241f727aadf?s=200&amp;d=mm&amp;r=g 2x' class='avatar avatar-100 photo' height='100' width='100' /><h4>{{ post.user.get_full_name }}</h4>
+                <p>Sagitariano, organizador de projetos colaborativos (juro que eu tento!), leigo profissional, mochileiro, leitor ávido, apaixonado por Brasília.</p>
+                <div class="clear">&nbsp;</div>
+            </section>
+        </footer>
+    </article><!-- #post-## -->
+
+    <nav class="pagination navigation post-navigation" role="navigation">
+        <div class="nav-links">
+            <div class="older-posts"><a href="index.html?p=1160" rel="prev">Let’s GO! O Setor Público inovando em Goiás. <span class="meta-nav">&rarr;</span></a></div>				<div class="page-number">&bull;</div>
+        </div><!-- .nav-links -->
+    </nav><!-- .navigation -->
+
+    <div id="comments" class="comments-area">
+        <div id="respond" class="comment-respond">
+            <h3 id="reply-title" class="comment-reply-title">Deixe uma resposta <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html?p=1182#respond" style="display:none;">Cancelar resposta</a></small></h3>				<form action="http://blog.labhackercd.net/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+            <p class="comment-notes"><span id="email-notes">O seu endereço de e-mail não será publicado.</span> Campos obrigatórios são marcados com <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comentário</label> <textarea id="comment" name="comment" cols="45" rows="8"  aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Nome <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" aria-required='true' required='required' /></p>
+            <p class="comment-form-email"><label for="email">E-mail <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" aria-describedby="email-notes" aria-required='true' required='required' /></p>
+            <p class="comment-form-url"><label for="url">Site</label> <input id="url" name="url" type="url" value="" size="30" /></p>
+            <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Publicar comentário" /> <input type='hidden' name='comment_post_ID' value='1182' id='comment_post_ID' />
+            <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+            </p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b76b101d8b" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="228"/></p>				</form>
+        </div><!-- #respond -->
+    </div><!-- #comments -->
+
+    <div id="secondary" class="widget-area" role="complementary">
+        <div class="clear">&nbsp;</div>
+    </div><!-- #secondary -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+        <a class="subscribe icon-feed" href="index.html?feed=rss2"><span class="tooltip">Subscribe!</span></a>
+        <div class="site-info inner">
+            <section class="copyright">
+                <a href="https://github.com/lacymorrow/casper-wp" rel="home">Casper WP</a> by Lacy Morrow
+            </section>
+        </div><!-- .site-info -->
+    </footer><!-- #colophon -->
+{% endblock %}
