@@ -20,7 +20,7 @@ class Post(models.Model):
     image = models.ImageField('Foto', upload_to='uploads/post/images', null=True, blank=True)
     featured_image = ImageRatioField('image', '700x227', verbose_name='Imagem em Destaque')
     slug = models.SlugField(max_length=150, blank=True)
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     status = models.BooleanField(default=True)
     published_at = models.DateTimeField(verbose_name='Data de Publicacao', default=datetime.now)
 

@@ -20,3 +20,10 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = 'post_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['prev_post'] = Post.objects.order_by('-published_at').exclude(id=self.object.id)[:1]
+        context['next_post'] = Post.objects.order_by('published_at').exclude(id=self.object.id)[:1]
+
+        return context

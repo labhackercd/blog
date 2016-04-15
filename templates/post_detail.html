@@ -3,8 +3,8 @@
     <article id="post-1182" class="post-1182 post type-post status-publish format-standard hentry category-sem-categoria">
         <header class="post-header">
             <span class="post-meta">
-            <span class="posted-on"><a href="index.html?p=1182" rel="bookmark"><time class="entry-date published" datetime="{{ object.published_at|date:'c' }}">{{ object.published_at|date:'d \d\e F \d\e o' }}</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="?author={{ post.user_id }}">{{ post.user }}</a></span></span></span>
-            <h1 class="post-title"><a href="index.html?p=1182" rel="bookmark">{{ object.title }}</a></h1>
+            <span class="posted-on"><a href="{{ object.get_absolute_url }}" rel="bookmark"><time class="entry-date published" datetime="{{ object.published_at|date:'c' }}">{{ object.published_at|date:'d \d\e F \d\e o' }}</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="{% url 'index' %}?author={{ post.user_id }}">{{ post.user }}</a></span></span></span>
+            <h1 class="post-title"><a href="{{ object.get_absolute_url }}" rel="bookmark">{{ object.title }}</a></h1>
         </header>
         <section class="post-content">
             {{ object.content|safe }}
@@ -21,8 +21,24 @@
 
     <nav class="pagination navigation post-navigation" role="navigation">
         <div class="nav-links">
-            <div class="older-posts"><a href="index.html?p=1160" rel="prev">Let’s GO! O Setor Público inovando em Goiás. <span class="meta-nav">&rarr;</span></a></div>				<div class="page-number">&bull;</div>
-        </div><!-- .nav-links -->
+            {% if prev_post.0 %}
+			<div class="older-posts">
+                <a href="{{ prev_post.0.get_absolute_url }}" rel="prev">
+                    {{ prev_post.0.title|truncatechars:48 }} <span class="meta-nav">→</span>
+                </a>
+            </div>
+            {% endif %}
+            {% if prev_post.0 and next_post.0 %}
+            <div class="page-number">•</div>
+            {% endif %}
+            {% if next_post.0 %}
+            <div class="newer-posts">
+                <a href="{{ next_post.0.get_absolute_url }}" rel="next">
+                    <span class="meta-nav">←</span> {{ next_post.0.title|truncatechars:48 }}
+                </a>
+            </div>
+            {% endif %}
+        </div>
     </nav><!-- .navigation -->
 
     <div id="comments" class="comments-area">
