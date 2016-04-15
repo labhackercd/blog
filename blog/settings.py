@@ -80,9 +80,10 @@ INSTALLED_APPS = [
     'django_comments',
     'taggit',
     'apps.posts',
+    'apps.core'
 ]
 
-COMMENTS_APP = 'apps.posts'
+# COMMENTS_APP = 'apps.posts'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -100,6 +101,7 @@ ROOT_URLCONF = 'blog.urls'
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
+AUTH_USER_MODEL = 'core.User'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -120,7 +122,6 @@ EMAIL_PORT = config('EMAIL_PORT', cast=int, default=587)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

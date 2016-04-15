@@ -3,15 +3,14 @@ from __future__ import unicode_literals
 
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import signals, permalink
+from django.db.models import signals
 from django.template.defaultfilters import slugify
 
-from django.contrib.auth.models import User
-from easy_thumbnails.files import get_thumbnailer
 from image_cropping import ImageRatioField
 from taggit.managers import TaggableManager
 from ckeditor.fields import RichTextField
 from datetime import datetime
+from apps.core.models import User
 
 
 class Post(models.Model):

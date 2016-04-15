@@ -5,14 +5,14 @@
     {% if request.GET.author and forloop.first%}
     <header class="page-header">
         <h1 class="page-title">
-            Author: <span class="vcard">{{ post.user.get_full_name }}</span>
+            Author: <span class="vcard">{{ post.user }}</span>
         </h1>
     </header>
     {% endif %}
     <article id="post-{{ post.id }}" class="post-{{ post.id }} post type-post status-publish format-standard hentry category-sem-categoria">
         <header class="post-header">
             <span class="post-meta">
-            <span class="posted-on"><a href="{{ post.get_absolute_url }}" rel="bookmark"><time class="entry-date published" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:'d \d\e F \d\e o' }}</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="?author={{ post.user_id }}">{{ post.user.get_full_name }}</a></span></span></span>
+            <span class="posted-on"><a href="{{ post.get_absolute_url }}" rel="bookmark"><time class="entry-date published" datetime="{{ post.published_at|date:'c' }}">{{ post.published_at|date:'d \d\e F \d\e o' }}</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="?author={{ post.user_id }}">{{ post.user }}</a></span></span></span>
             <h1 class="post-title"><a href="{{ post.get_absolute_url }}" rel="bookmark">{{ post.title }}</a></h1>
 
         </header>

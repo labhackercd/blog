@@ -1,8 +1,7 @@
 db.sqlite3
-media/csv/
-media/uploads/post/
-media/uploads/ckeditor/
-media/static/
+media/
+
+*.DS_Store
 
 # Created by https://www.gitignore.io/api/python,django
 

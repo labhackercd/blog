@@ -1,8 +1,8 @@
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
 import csv
 
 from django_comments.models import Comment
+from apps.core.models import User
 
 from apps.posts.models import Post
 
