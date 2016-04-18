@@ -1,17 +1,16 @@
 from django.contrib import admin
-
-from ckeditor.widgets import CKEditorWidget
 from django import forms
 from image_cropping import ImageCroppingMixin
-
 from apps.posts.models import Post
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 
 class PostAdminForm(forms.ModelForm):
-    content = forms.CharField(widget=CKEditorWidget())
-
     class Meta:
         model = Post
+        widgets = {
+            'content': CKEditorUploadingWidget(),
+        }
         exclude = ('slug',)
 
 

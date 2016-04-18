@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import signals
@@ -16,7 +17,7 @@ from apps.core.models import User
 class Post(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     title = models.CharField('Título', max_length=100)
-    content = RichTextField('Conteúdo')
+    content = RichTextUploadingField('Conteúdo')
     image = models.ImageField('Foto', upload_to='uploads/post/images', null=True, blank=True)
     featured_image = ImageRatioField('image', '700x227', verbose_name='Imagem em Destaque')
     slug = models.SlugField(max_length=150, blank=True)

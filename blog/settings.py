@@ -70,6 +70,8 @@ INSTALLED_APPS = [
     'image_cropping',
     'widget_tweaks',
     'ckeditor',
+    'ckeditor_uploader',
+    'threadedcomments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -83,7 +85,7 @@ INSTALLED_APPS = [
     'apps.core'
 ]
 
-# COMMENTS_APP = 'apps.posts'
+COMMENTS_APP = 'threadedcomments'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -156,6 +158,8 @@ USE_L10N = True
 USE_TZ = True
 
 CKEDITOR_UPLOAD_PATH = 'uploads/ckeditor'
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 
 CKEDITOR_CONFIGS = {
     'default': {
