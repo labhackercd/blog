@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from django.forms.widgets import PasswordInput
 from image_cropping import ImageCroppingMixin
 from models import User
 
@@ -8,7 +9,10 @@ class UserAdminForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password','first_name', 'last_name', 'email', 'is_active', 'is_member', 'is_superuser',
+        widgets = {
+            'password': PasswordInput(),
+        }
+        fields = ('username', 'password', 'first_name', 'last_name', 'email', 'is_active', 'is_member', 'is_superuser',
                   'created_date', 'photo', 'photo_thumb', 'description')
 
     def save(self, commit=True):
