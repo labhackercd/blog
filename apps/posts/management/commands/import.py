@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand
 import csv
 
-from django_comments.models import Comment
+from threadedcomments.models import ThreadedComment
+
 from apps.core.models import User
 
 from apps.posts.models import Post
@@ -34,7 +35,7 @@ class Command(BaseCommand):
         with open('media/csv/comments.csv') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                comment = Comment()
+                comment = ThreadedComment()
                 comment.id = int(row['comment_ID'])
                 comment.object_pk = row['comment_post_ID']
                 comment.content_type_id = 15
@@ -45,6 +46,8 @@ class Command(BaseCommand):
                 comment.ip_address = row['comment_author_IP']
                 comment.submit_date = row['comment_date']
                 comment.comment = row['comment_content']
+                if row['comment_parent'] != '0':
+                    comment.parent_id = row['comment_parent']
                 if row['user_id'] != '0':
                     comment.user_id = row['user_id']
                 comment.save()
