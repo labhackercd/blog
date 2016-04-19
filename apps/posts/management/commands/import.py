@@ -45,7 +45,7 @@ class Command(BaseCommand):
                 comment.ip_address = row['comment_author_IP']
                 comment.submit_date = row['comment_date']
                 comment.comment = row['comment_content']
-                if row['comment_content'] != '0':
+                if row['user_id'] != '0':
                     comment.user_id = row['user_id']
                 comment.save()
 
