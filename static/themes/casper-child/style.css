@@ -2846,8 +2846,8 @@
         .extraneous .navbar-nav > li {
           float: left; }
           .extraneous .navbar-nav > li > a {
-            padding-top: 15px;
-            padding-bottom: 15px; } }
+            padding-top: 8px;
+            padding-bottom: 8px; } }
   .extraneous .navbar-form {
     margin-left: -15px;
     margin-right: -15px;
@@ -4613,28 +4613,30 @@
         width: 33px;
         height: 33px;
         background-size: 100%; }
-        .extraneous .nav-top .nav.navbar-nav .icon-img:hover {
-          background-position-y: 100%;
-          background-size: 100%; }
-      .extraneous .nav-top .nav.navbar-nav .icon-img.edemocracia {
-        background-image: url("img/icon-e-democracia.png"); }
-      .extraneous .nav-top .nav.navbar-nav .icon-img.hackdash {
-        background-image: url("img/icon-hackdash.png"); }
-      .extraneous .nav-top .nav.navbar-nav a.github {
-        margin-left: -10px; }
-        .extraneous .nav-top .nav.navbar-nav a.github:hover {
+      .extraneous .nav-top .nav.navbar-nav .icon {
+        width: 25px;
+        height: 25px;
+        font-size: 25px;
+        box-sizing: content-box;
+        line-height: 25px;
+        text-align: center;
+        padding: 5px;
+        margin: 0 3px;
+        border-radius: 50%;
+        background-color: #8E8E8E;
+        color: white;
+        transition: all ease 0.3s; }
+        .extraneous .nav-top .nav.navbar-nav a.icon.icon-edemocracia:hover {
+          color: #009E1E; }
+        .extraneous .nav-top .nav.navbar-nav a.icon.icon-hackdash:hover {
+          color: #191919; }
+        .extraneous .nav-top .nav.navbar-nav a.icon.icon-github:hover {
           color: #333; }
-      .extraneous .nav-top .nav.navbar-nav a.twitter {
-        margin-left: -10px; }
-        .extraneous .nav-top .nav.navbar-nav a.twitter:hover {
+        .extraneous .nav-top .nav.navbar-nav a.icon.icon-twitter:hover {
           color: #4099FF; }
-      .extraneous .nav-top .nav.navbar-nav a.facebook {
-        margin-left: -10px; }
-        .extraneous .nav-top .nav.navbar-nav a.facebook:hover {
+        .extraneous .nav-top .nav.navbar-nav a.icon.icon-facebook-square:hover {
           color: #3B5998; }
-      .extraneous .nav-top .nav.navbar-nav a.flickr {
-        margin-left: -10px; }
-        .extraneous .nav-top .nav.navbar-nav a.flickr:hover {
+        .extraneous .nav-top .nav.navbar-nav a.icon.icon-flickr:hover {
           color: #FF0084; }
       .extraneous .nav-top .nav.navbar-nav li {
         text-transform: uppercase; }
