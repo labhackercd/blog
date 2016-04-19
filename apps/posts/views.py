@@ -5,7 +5,7 @@ from apps.posts.models import Post
 class PostListView(ListView):
     model = Post
     template_name = 'index.html'
-    paginate_by = 10
+    paginate_by = 3
 
     def get_queryset(self):
         author = self.request.GET.get('author')
