@@ -23,7 +23,7 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['prev_post'] = Post.objects.order_by('-published_at').exclude(id=self.object.id)[:1]
-        context['next_post'] = Post.objects.order_by('published_at').exclude(id=self.object.id)[:1]
+        context['prev_post'] = Post.objects.filter(published_at__lte=self.object.published_at).order_by('-published_at').exclude(id=self.object.id)[:1]
+        context['next_post'] = Post.objects.filter(published_at__gte=self.object.published_at).order_by('published_at').exclude(id=self.object.id)[:1]
 
         return context
