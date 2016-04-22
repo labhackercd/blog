@@ -4562,7 +4562,8 @@
         text-decoration: none; }
     .extraneous footer .text {
       text-align: justify;
-      opacity: 0.6; }
+      opacity: 0.6;
+      line-height: 2rem; }
   .extraneous .navbar-header {
     max-width: 100%; }
     .extraneous .navbar-header img {
@@ -4685,6 +4686,14 @@
         font-weight: bold;
         text-transform: uppercase;
         text-shadow: 0px 0px 10px black; }
+  .page-title {
+    font-size: 1.5em;
+    color: #9eabb3;
+    text-align: center;
+    width: 80%;
+    max-width: 700px;
+    margin: 4rem auto;
+  }
   .extraneous .projetos .project-slot {
     text-align: center;
     color: #8e8e8e;
