@@ -11,6 +11,7 @@ urlpatterns = [
 
 urlpatterns += patterns('',
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^comments/posted/$', 'apps.posts.views.comment_posted', name='create_comment'),
     url(r'^comments/', include('django_comments.urls')),
 )
 

@@ -52,7 +52,7 @@
                     <div class="comment-content">
                         <p>{{ comment.comment }}</p>
                     </div><!-- .comment-content -->
-
+                    {% render_comment_form for object with comment.id %}
                 </article><!-- .comment-body -->
                 {% if comment.children %}
                 <ol class="children">
@@ -84,6 +84,7 @@
             </li><!-- #comment-## -->
             {% endfor %}
         </ol>
+        {% render_comment_form for object %}
     </div>
 
         <nav class="pagination navigation post-navigation" role="navigation">
