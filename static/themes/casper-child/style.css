@@ -4744,3 +4744,50 @@ footer {
 .widget-area .widget-title {
   font-family: 'Oswald';
   letter-spacing: 0px; }
+
+.comment-form-honeypot {
+  display: none;
+}
+
+.comment-reply-title {
+  margin-top: 1.5em;
+  margin-bottom: 0.2em;
+}
+
+.comment-form .submit-post, .comment-reply-open .comment-reply-button {
+  font-family: 'Open Sans',sans-serif;
+  font-size: 1.3rem;
+  display: inline-block;
+  float: left;
+  max-width: 35%;
+  margin-top: 1em;
+  padding: 15px;
+  transition: border ease .3s;
+  white-space: -moz-pre-wrap!important;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  white-space: normal;
+  text-decoration: none;
+  word-wrap: break-word;
+  word-break: break-all;
+  color: #9eabb3;
+  border: #ebf2f6 2px solid;
+  border-width: 3px;
+  background: 0 0;
+}
+
+.comment-reply-open .comment-reply-button:hover{
+  border-color: #ccc #bbb #aaa;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.8),inset 0 15px 17px rgba(255,255,255,.8),inset 0 -5px 12px rgba(0,0,0,.02);
+}
+
+.submit-post.negative {
+  color: #FFAFAF;
+  border-color: #FFD6D6;
+  margin-left: 1em;
+}
+
+.submit-post.negative:hover {
+  border-color: #D96868;
+}

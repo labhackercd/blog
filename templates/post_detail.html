@@ -1,5 +1,6 @@
     {% extends 'elements/base.html' %}
     {% load threadedcomments_tags %}
+    {% load widget_tweaks %}
     {% block content %}
         <article id="post-1182" class="post-1182 post type-post status-publish format-standard hentry category-sem-categoria">
             <header class="post-header">
@@ -35,9 +36,6 @@
             <li id="comment-{{ comment.id }}" class="comment even thread-even depth-1 parent">
                 <article id="div-comment-1256" class="comment-body">
                     <footer class="comment-meta">
-                        <div class="comment-author vcard">
-                            <b class="fn">{{ comment.user_name }}</b> <span class="says">disse:</span>
-                        </div><!-- .comment-author -->
 
                         <div class="comment-metadata">
                             <a href="{{ object.get_absolute_url }}#comment-{{ comment.id }}">
@@ -47,12 +45,16 @@
                             </a>
                         </div><!-- .comment-metadata -->
 
+                        <div class="comment-author vcard">
+                            <b class="fn">{{ comment.user_name }}</b> <span class="says">disse:</span>
+                        </div><!-- .comment-author -->
+
                     </footer><!-- .comment-meta -->
 
                     <div class="comment-content">
                         <p>{{ comment.comment }}</p>
                     </div><!-- .comment-content -->
-                    {% render_comment_form for object with comment.id %}
+
                 </article><!-- .comment-body -->
                 {% if comment.children %}
                 <ol class="children">
@@ -60,9 +62,7 @@
                     <li id="comment-{{ reply.id }}" class="comment byuser comment-author-diego-cunha bypostauthor odd alt depth-2">
                         <article id="div-comment-106" class="comment-body">
                             <footer class="comment-meta">
-                                <div class="comment-author vcard">
-                                    <b class="fn">{{ reply.user_name }}</b> <span class="says">disse:</span>
-                                </div>
+
                                 <div class="comment-metadata">
                                     <a href="{{ object.get_absolute_url }}#comment-{{ reply.id }}">
                                         <time datetime="{{ reply.submit_date|date:'c' }}">
@@ -70,6 +70,10 @@
                                         </time>
                                     </a>
                                 </div><!-- .comment-metadata -->
+                                
+                                <div class="comment-author vcard">
+                                    <b class="fn">{{ reply.user_name }}</b> <span class="says">disse:</span>
+                                </div>
 
                             </footer><!-- .comment-meta -->
 
@@ -81,10 +85,102 @@
                     {% endfor %}
                 </ol>
                 {% endif %}
+
+                <div class="comment-reply-open">
+                    <button class="comment-reply-button">Responder esta thread</button>
+                </div>
+
+                <div class="comment-reply-thread">
+                    <h3 class="comment-reply-title">Responder esta thread:</h3>
+                    {% get_comment_form for object as form_reply with comment.id %}
+
+                    <form class="comment-form" action="/comments/post/" method="post">
+                        <div>{% csrf_token %} </div>
+                        <div>{{ form_reply.content_type }}</div>
+                        <div>{{ form_reply.object_pk }}</div>
+                        <div>{{ form_reply.timestamp }}</div>
+                        <div>{{ form_reply.security_hash }}</div>
+
+                        <p class="comment-form-author">
+                        <label for="id_name_{{ comment.id }}"><i class="icon icon-vcard"></i> Nome</label>
+                        <input id="id_name_{{ comment.id }}" maxlength="50" name="name" type="text">
+                        </p>
+
+                        <p class="comment-form-email">
+                        <label for="id_email"><i class="icon icon-envelope"></i> E-mail</label>
+                        <input id="id_email_{{ comment.id }}" name="email" type="email">
+                        </p>
+
+                        <p class="comment-form-url">
+                        <label for="id_url"><i class="icon icon-globe"></i> Website</label>
+                        <input id="id_url_{ comment.id }}" name="url" type="url">
+                        </p>
+
+                        <p class="comment-form-comment">
+                        <label for="id_comment"><i class="icon icon-commenting"></i> Comentário</label>
+                        <textarea cols="40" id="id_comment_{ comment.id }}" maxlength="3000" name="comment" rows="4"></textarea>
+                        </p>
+
+                        <p class="comment-form-honeypot">
+                        <label for="id_honeypot">Se você inserir qualquer coisa neste campo, seu comentário será tratado como spam</label>
+                        {{ form_reply.honeypot }}
+                        </p>
+                        
+                        {{ form_reply.parent }}
+                        
+                        <div class="form-submit">
+                            <input type="submit" name="post" class="submit-post" value="Enviar">
+                        </div>
+
+                        <div class="form-cancel">
+                            <button type="button" class="submit-post negative">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
             </li><!-- #comment-## -->
             {% endfor %}
         </ol>
-        {% render_comment_form for object %}
+        
+        <h3 id="reply-title" class="comment-reply-title">Deixe um comentário:</h3>
+        {% get_comment_form for object as form %}
+        <form class="comment-form" action="/comments/post/" method="post">
+            <div>{% csrf_token %} </div>
+            <div>{{ form.content_type }}</div>
+            <div>{{ form.object_pk }}</div>
+            <div>{{ form.timestamp }}</div>
+            <div>{{ form.security_hash }}</div>
+
+            <p class="comment-form-author">
+            <label for="id_name"><i class="icon icon-vcard"></i> Nome</label>
+            {{ form.name }}
+            </p>
+
+            <p class="comment-form-email">
+            <label for="id_email"><i class="icon icon-envelope"></i> E-mail</label>
+            {{ form.email }}
+            </p>
+
+            <p class="comment-form-url">
+            <label for="id_url"><i class="icon icon-globe"></i> Website</label>
+            {{ form.url }}
+            </p>
+
+            <p class="comment-form-comment">
+            <label for="id_comment"><i class="icon icon-commenting"></i> Comentário</label>
+            {{ form.comment|attr:"rows:4" }}
+            </p>
+
+            <p class="comment-form-honeypot">
+            <label for="id_honeypot">Se você inserir qualquer coisa neste campo, seu comentário será tratado como spam</label>
+            {{ form.honeypot }}
+            </p>
+            
+            {{ form.parent }}
+            
+            <div class="form-submit">
+                <input type="submit" id="submit" name="post" class="submit-post" value="Enviar">
+            </div>
+        </form>
     </div>
 
         <nav class="pagination navigation post-navigation" role="navigation">
@@ -121,4 +217,22 @@
                 </section>
             </div><!-- .site-info -->
         </footer><!-- #colophon -->
+    {% endblock %}
+    {% block extrajs %}
+     <script type="text/javascript">
+        jQuery( document ).ready(function() {
+          jQuery('.comment-reply-thread').addClass('hidden');
+          jQuery('.comment-reply-open').addClass('active');
+
+          jQuery( ".comment-reply-button" ).click(function() {
+            jQuery(this).parent().next('.comment-reply-thread').removeClass('hidden');
+            jQuery(this).parent().removeClass('active');
+          });
+
+          jQuery( ".form-cancel .submit-post.negative" ).click(function() {
+            jQuery(this).closest('.comment-reply-thread').addClass('hidden');
+            jQuery(this).closest('.comment-reply-thread').prev('.comment-reply-open').addClass('active');
+          });
+        });
+     </script>
     {% endblock %}
