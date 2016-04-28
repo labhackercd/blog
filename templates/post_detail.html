@@ -87,11 +87,11 @@
                 {% endif %}
 
                 <div class="comment-reply-open">
-                    <button class="comment-reply-button">Responder esta thread</button>
+                    <button class="comment-reply-button">Responder</button>
                 </div>
 
                 <div class="comment-reply-thread">
-                    <h3 class="comment-reply-title">Responder esta thread:</h3>
+                    <h3 class="comment-reply-title">Deixe uma resposta:</h3>
                     {% get_comment_form for object as form_reply with comment.id %}
 
                     <form class="comment-form" action="/comments/post/" method="post">
@@ -103,12 +103,12 @@
 
                         <p class="comment-form-author">
                         <label for="id_name_{{ comment.id }}"><i class="icon icon-vcard"></i> Nome</label>
-                        <input id="id_name_{{ comment.id }}" maxlength="50" name="name" type="text">
+                        <input id="id_name_{{ comment.id }}" maxlength="50" name="name" type="text" required>
                         </p>
 
                         <p class="comment-form-email">
                         <label for="id_email"><i class="icon icon-envelope"></i> E-mail</label>
-                        <input id="id_email_{{ comment.id }}" name="email" type="email">
+                        <input id="id_email_{{ comment.id }}" name="email" type="email" required>
                         </p>
 
                         <p class="comment-form-url">
@@ -118,7 +118,7 @@
 
                         <p class="comment-form-comment">
                         <label for="id_comment"><i class="icon icon-commenting"></i> Comentário</label>
-                        <textarea cols="40" id="id_comment_{ comment.id }}" maxlength="3000" name="comment" rows="4"></textarea>
+                        <textarea cols="40" id="id_comment_{ comment.id }}" maxlength="3000" name="comment" rows="4" required></textarea>
                         </p>
 
                         <p class="comment-form-honeypot">
@@ -152,12 +152,12 @@
 
             <p class="comment-form-author">
             <label for="id_name"><i class="icon icon-vcard"></i> Nome</label>
-            {{ form.name }}
+            {{ form.name|attr:"required" }}
             </p>
 
             <p class="comment-form-email">
             <label for="id_email"><i class="icon icon-envelope"></i> E-mail</label>
-            {{ form.email }}
+            {{ form.email|attr:"required" }}
             </p>
 
             <p class="comment-form-url">
@@ -167,7 +167,7 @@
 
             <p class="comment-form-comment">
             <label for="id_comment"><i class="icon icon-commenting"></i> Comentário</label>
-            {{ form.comment|attr:"rows:4" }}
+            {{ form.comment|attr:"rows:4"|attr:"required" }}
             </p>
 
             <p class="comment-form-honeypot">
