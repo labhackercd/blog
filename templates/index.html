@@ -17,7 +17,7 @@
 
         </header>
         <section class="post-content">
-            {{ post.content|safe }}
+            <p>{{ post.content|safe|removetags:"img a"|truncatewords_html:50 }}</p>
         </section>
     </article><!-- #post-## -->
     {% endfor %}
