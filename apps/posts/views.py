@@ -3,9 +3,9 @@ from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from threadedcomments.forms import ThreadedCommentForm
 from threadedcomments.models import ThreadedComment
-
+from rest_framework import viewsets
 from apps.posts.models import Post
-
+from apps.posts.serializers import PostSerializer
 
 class PostListView(ListView):
     model = Post
@@ -32,6 +32,11 @@ class PostDetailView(DetailView):
         context['next_post'] = Post.objects.filter(published_at__gte=self.object.published_at).order_by('published_at').exclude(id=self.object.id)[:1]
 
         return context
+
+
+class PostApiView(viewsets.ModelViewSet):
+    queryset = Post.objects.filter(status=True).order_by('-published_at')
+    serializer_class = PostSerializer
 
 
 def comment_posted(request):

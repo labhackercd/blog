@@ -1,11 +1,16 @@
 from django.conf.urls import url, patterns, include
 from django.conf.urls.static import static
 from django.contrib import admin
-
+from rest_framework import routers
 from blog import settings
+from apps.posts import views
+
+router = routers.DefaultRouter()
+router.register(r'posts', views.PostApiView)
 
 urlpatterns = [
     url(r'^', include('apps.posts.urls')),
+    url(r'^api/', include(router.urls)),
     url(r'^admin/', admin.site.urls),
 ]
 
