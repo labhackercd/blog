@@ -20,4 +20,4 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('user', 'title', 'content', 'image', 'published_at', 'get_absolute_url')
 
     def get_short_content(self, obj):
-        return strip_tags(obj.content).replace('\n', '').replace('\r', '').replace('\t', '').replace('&nbsp', '')
+        return strip_tags(obj.content)
