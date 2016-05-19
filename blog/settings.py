@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'threadedcomments',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -101,6 +102,7 @@ COMMENTS_APP = 'threadedcomments'
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -111,6 +113,11 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'blog.urls'
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_METHODS = (
+    'GET'
+)
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
