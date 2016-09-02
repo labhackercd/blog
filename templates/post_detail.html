@@ -1,6 +1,23 @@
     {% extends 'elements/base.html' %}
     {% load threadedcomments_tags %}
     {% load widget_tweaks %}
+    {% block extrameta %}
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ object.title }}" />
+    <meta property="og:description" content="{{ object.content|striptags|truncatewords:'30' }}" />
+    {% if object.image %}
+    <meta property="og:image:url" content="http://blog.labhackercd.net/media/{{ object.image }}" /> 
+    {% else %}
+    <meta property="og:image:url" content="http://labhackercd.net/assets/img/logo-labhacker-icon.png" /> 
+    {% endif %}
+    {% if '.jpg' in object.image|stringformat:"s" %}
+        <meta property="og:image:type" content="image/jpg" />
+    {% elif '.png' in object.image|stringformat:"s" %}   
+        <meta property="og:image:type" content="image/png" />
+    {% else %}
+        <meta property="og:image:type" content="image/png" />
+    {% endif %}
+    {% endblock %}
     {% block content %}
         <article id="post-1182" class="post-1182 post type-post status-publish format-standard hentry category-sem-categoria">
             <header class="post-header">
